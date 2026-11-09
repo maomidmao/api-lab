@@ -1,5 +1,33 @@
 # api-lab
 
+API tests for the QuickPizza demo site using Python, pytest, and requests.
+
+## Setup and running tests
+
+Requirements: Python 3.10 or newer, Git, and an internet connection to `https://quickpizza.grafana.com`.
+
+Clone this repository and open a PowerShell terminal in its folder. Create and activate a virtual environment, then install the dependencies:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Run the full test suite with:
+
+```powershell
+pytest -v
+```
+
+To generate a self-contained HTML report, run:
+
+```powershell
+pytest -v --html=report.html --self-contained-html
+```
+
+Open `report.html` in a browser with JavaScript enabled to see the results. The excluded-tools test is marked `xfail` because the API returns 500 when all three tools are excluded; see `RESULTS.md` for the defect report and observations. Tests create their own users and use their own data on the shared demo site.
+
 ## Input domain model: create a rating
 
 `POST /api/ratings` takes a pizza ID and stars in the request body, and an authorization token in the header. The base choices represent a normal valid request.
